@@ -25,12 +25,46 @@ ReactDOM.render(
 	cartoon('Yasmin', 'Ser'),
 	document.getElementById('root')
 );*/
-/*3.*/
+/*3.
 setInterval(function(){
 	ReactDOM.render(
 		<h1>Time now - {new Date().toLocaleTimeString()}</h1>,
 		document.getElementById('root')
 	);
-}, 1000);
+}, 1000);*/
+/*4. Component-functional
+function Cartoon(props) {
+	return <h1>Hello, {props.name}</h1>;
+}
+ReactDOM.render(
+	<Cartoon name='Sergei'/>,
+	document.getElementById('root')
+);*/
 
+/*5. Component-class
+class Cartoon extends React.Component {
+	render(){
+		return <h1>Hello, {this.props.name}</h1>;
+	}
+}
+ReactDOM.render(
+	<Cartoon name='Sergei'/>,
+	document.getElementById('root')
+);*/
 
+/*5. Component inside another Component*/
+function Cartoon(props) {
+	return <h1>Hello, {props.name} show {props.show}</h1>
+}
+function Show() {
+	return (
+		<div>
+			<Cartoon name='Sergei' show='Your Love'/>
+			<Cartoon name='Irena' show='My Love'/>
+		</div>
+	);
+}
+ReactDOM.render(
+	<Show/>,
+	document.getElementById('root')
+);
