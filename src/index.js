@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM  from 'react-dom';
 
 /* 1.
@@ -40,7 +40,6 @@ ReactDOM.render(
 	<Cartoon name='Sergei'/>,
 	document.getElementById('root')
 );*/
-
 /*5. Component-class
 class Cartoon extends React.Component {
 	render(){
@@ -51,8 +50,7 @@ ReactDOM.render(
 	<Cartoon name='Sergei'/>,
 	document.getElementById('root')
 );*/
-
-/*5. Component inside another Component*/
+/*5. Component inside another Component
 function Cartoon(props) {
 	return <h1>Hello, {props.name} show {props.show}</h1>
 }
@@ -66,5 +64,66 @@ function Show() {
 }
 ReactDOM.render(
 	<Show/>,
+	document.getElementById('root')
+);*/
+/*6. State - clock
+class Clock extends React.Component {
+	constructor(props) {
+	    super(props);
+	    this.state = {
+	    	date: new Date(),
+		};
+	}
+	componentDidMount(){
+		this.timer = setInterval( ()=> this.start(), 1000 );
+	}
+	componentWillUnmount() {
+		clearInterval(this.timer);
+	}
+	start(){
+		this.setState({
+			date: new Date()
+		})
+	}
+	render(){
+		return <h1>Time is: {this.state.date.toLocaleTimeString()}</h1>;
+	}
+}
+ReactDOM.render(
+	<Clock/>,
+	document.getElementById('root')
+);*/
+
+/*7.*/
+class Inc extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+			counterLink: 0,
+			counterButton: 0
+        };
+    }
+    increment = (event)=>{
+    	event.preventDefault();
+    	this.setState({
+			counterLink: this.state.counterLink+1,
+			counterButton: this.state.counterButton+3
+		});
+	};
+    render(){
+    	return (
+    		<div>
+				<a href='http://google.com' onClick={this.increment}>
+					Link Value is {this.state.counterLink}
+				</a><br/><br/><br/>
+				<button onClick={this.increment}>
+					Button Value is {this.state.counterButton}
+				</button>
+			</div>
+		);
+	}
+}
+ReactDOM.render(
+	<Inc/>,
 	document.getElementById('root')
 );
