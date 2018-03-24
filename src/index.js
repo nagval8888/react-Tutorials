@@ -125,8 +125,7 @@ ReactDOM.render(
 	<Inc/>,
 	document.getElementById('root')
 );*/
-
-/*8. */
+/*8.
 function Message(props) {
 	if (props.value) {
 		return <h1>This is first message</h1>;
@@ -156,5 +155,20 @@ class Btn extends Component {
 }
 ReactDOM.render(
 	<Btn/>,
+	document.getElementById('root')
+);*/
+
+/*9. List of massive*/
+function ToonList(props) {
+	const list = props.cartoon;
+	const toons = list.map( (list,index)=>
+		<li key={index}>{list}</li>
+	);
+	return <ul>{toons}</ul>;
+}
+const cartoons = ['Pikachu','Alladin','Tom','Tom'];
+
+ReactDOM.render(
+	<ToonList cartoon={cartoons}/>,
 	document.getElementById('root')
 );
