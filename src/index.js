@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM  from 'react-dom';
-
 /* 1.
 let name = 'Sergeiko';
 let obj = {
@@ -93,8 +92,7 @@ ReactDOM.render(
 	<Clock/>,
 	document.getElementById('root')
 );*/
-
-/*7.*/
+/*7.
 class Inc extends Component {
     constructor(props){
         super(props);
@@ -125,5 +123,38 @@ class Inc extends Component {
 }
 ReactDOM.render(
 	<Inc/>,
+	document.getElementById('root')
+);*/
+
+/*8. */
+function Message(props) {
+	if (props.value) {
+		return <h1>This is first message</h1>;
+	}
+	return <h1>I am second message</h1>;
+}
+class Btn extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+        	value: true
+		};
+    }
+    handleClick = ()=>{
+    	this.setState({
+			value: !this.state.value
+		});
+	};
+    render(){
+    	return (
+    		<div>
+				<button onClick={this.handleClick}>Change the message</button>
+				<Message value={this.state.value}/>
+			</div>
+		);
+	}
+}
+ReactDOM.render(
+	<Btn/>,
 	document.getElementById('root')
 );
