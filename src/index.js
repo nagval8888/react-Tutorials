@@ -157,8 +157,7 @@ ReactDOM.render(
 	<Btn/>,
 	document.getElementById('root')
 );*/
-
-/*9. List of massive*/
+/*9. List of massive
 function ToonList(props) {
 	const list = props.cartoon;
 	const toons = list.map( (list,index)=>
@@ -167,8 +166,50 @@ function ToonList(props) {
 	return <ul>{toons}</ul>;
 }
 const cartoons = ['Pikachu','Alladin','Tom','Tom'];
-
 ReactDOM.render(
 	<ToonList cartoon={cartoons}/>,
+	document.getElementById('root')
+);*/
+/*10. Form,input,checkbox,textarea,select*/
+class FormTest extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            value: '' // for checkbox->false, for select->'alladin'
+        };
+    }
+	handleSubmit = (event)=>{
+    	console.log(this.state.value);
+		event.preventDefault();
+	};
+    handleChange = (event)=>{
+    	this.setState({
+			value: event.target.value // for checkbox,select->!this.state.value
+		})
+	};
+    render(){
+    	return (
+			<form onSubmit={this.handleSubmit}>
+				<input type='text' value={this.state.value}
+					onChange={this.handleChange}/><br/><br/>
+				
+				<label>Checkbox</label>
+				<input type='checkbox' value={this.state.value}
+					   onChange={this.handleChange}/><br/><br/>
+				
+				<select value={this.state.value} onChange={this.handleChange}>
+					<option value='pikachu'>Pikachu</option>
+					<option value='alladin'>Alladin</option>
+				</select>
+				
+				<textarea value={this.state.value} onChange={this.handleChange} cols="30" rows="10"/>
+				
+				<input type='submit' value='Go Ahead'/>
+			</form>
+		);
+	}
+}
+ReactDOM.render(
+	<FormTest />,
 	document.getElementById('root')
 );
